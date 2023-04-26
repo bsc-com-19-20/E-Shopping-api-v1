@@ -1,5 +1,5 @@
 export class CreateProductCatalogDto{
-    product_name: string;
-    price: number;
+    ProductName: string;
+    Price: number;
     isAvailable: boolean;
 }
