@@ -1,5 +1,4 @@
-import { Orders } from 'src/orders/orders.entity';
-import { Entity, Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class ProductCatalog {
@@ -13,8 +12,5 @@ export class ProductCatalog {
   Price: number;
 
   @Column()
-  isAvailable: boolean;
-
-  @OneToMany(() => Orders, (orders) => orders.productCatalog)
-  orders: Orders[];
+  description: string;
 }

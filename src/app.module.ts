@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { ProductCatalogController } from './product-catalog/product-catalog.controller';
+import { ProductCatalogController } from './product-catalog/product-catalog.controller';
 import { ProductCatalogModule } from './product-catalog/product-catalog.module';
 import { ProductCatalog } from './product-catalog/models/Product-catalog.entity';
-import { OrdersService } from './orders/orders.service';
-import { OrdersController } from './orders/orders.controller';
-import { OrdersModule } from './orders/orders.module';
-import { Orders } from './orders/orders.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 @Module({
-  imports: [ProductCatalogModule,
+  imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -19,9 +17,8 @@ import { Orders } from './orders/orders.entity';
       entities: [ProductCatalog],
       synchronize: true,
     }),
-
-    OrdersModule],
-  controllers: [OrdersController],
-  providers: [OrdersService],
+    ProductCatalogModule,
+    AuthModule,
+    UsersModule],
 })
 export class AppModule {}
