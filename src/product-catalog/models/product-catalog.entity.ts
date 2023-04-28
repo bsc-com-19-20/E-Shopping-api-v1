@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Orders } from 'src/orders/orders.entity';
 
 @Entity()
 export class ProductCatalog {
@@ -13,4 +14,7 @@ export class ProductCatalog {
 
   @Column()
   description: string;
+
+  @ManyToOne(() => Orders, orders => orders.productCatalog)
+  orders: Orders[];
 }

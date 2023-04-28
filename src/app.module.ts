@@ -6,6 +6,9 @@ import { ProductCatalog } from './product-catalog/models/Product-catalog.entity'
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { OrdersModule } from './orders/orders.module';
+import { Orders } from './orders/orders.entity';
+import { Users } from './users/users.entity';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -15,7 +18,7 @@ import { OrdersModule } from './orders/orders.module';
       username: 'root',
       password: '',
       database: 'eshopping_v1',
-      entities: [ProductCatalog],
+      entities: [ProductCatalog, Orders, Users,],
       synchronize: true,
     }),
     ProductCatalogModule,

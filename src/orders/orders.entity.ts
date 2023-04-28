@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import { ProductCatalog } from 'src/product-catalog/models/Product-catalog.entity';
+import { Users } from 'src/users/users.entity';
 
 @Entity()
 export class Orders {
@@ -25,4 +27,14 @@ export class Orders {
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
+
+  @Column({ type: 'boolean', default: false })
+  paid: boolean;
+
+  @ManyToOne(() =>  Users, users => users.orders)
+  users: Users;
+
+  @OneToMany(() => ProductCatalog, productCatalog => productCatalog.orders)
+  productaCatalog: ProductCatalog;
+  productCatalog: any;
 }

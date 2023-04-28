@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Patch, Param, ParseIntPipe, Delete } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrdersDto } from './dto/create-orders.dto';
+import { EditOrdersDto } from './dto';
 //import { AuthGuard } from '@nestjs/passport';
 
 @Controller('orders')
@@ -8,13 +9,36 @@ import { CreateOrdersDto } from './dto/create-orders.dto';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
-  @Post()
-  create(@Body() createOrderDto: CreateOrdersDto): Promise<any> {
-    return this.ordersService.createOrders(createOrderDto);
+  @Get()
+  
+  getOrders(){
+      return this.ordersService.fetchOrders()
   }
 
-  @Get()
-  findAll(): Promise<any[]> {
-    return this.ordersService.findAllOrders();
+  @Post(':id/pay')
+  async markOrdersAsPaid(@Param('id') id: number) {
+    return await this.ordersService.markOrdersAsPaid(id);
   }
+
+  @Post()
+ 
+  addOrdersItem(@Body() orders){
+      return this.ordersService.createOrders(orders)
+  }
+
+  @Delete(':id')
+
+async deleteOrders(
+  @Param('id', ParseIntPipe) id: number,
+  @Body() product_name: String,
+) {
+  return await this.ordersService.deleteOrders(id);
+}
+@Patch(':id')
+async update(
+  @Param('id', ParseIntPipe) id: number,
+  @Body() updateOrdersDto: EditOrdersDto,
+) {
+  return await this.ordersService.updateOrders(id, updateOrdersDto);
+}
 }
