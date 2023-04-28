@@ -5,6 +5,7 @@ import { ProductCatalogModule } from './product-catalog/product-catalog.module';
 import { ProductCatalog } from './product-catalog/models/Product-catalog.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { OrdersModule } from './orders/orders.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -19,6 +20,7 @@ import { UsersModule } from './users/users.module';
     }),
     ProductCatalogModule,
     AuthModule,
-    UsersModule],
+    UsersModule,
+    OrdersModule],
 })
 export class AppModule {}
