@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Order } from './orders.entity';
-import { CreateOrderDto } from './dto/create-order.dto';
+import { Orders } from './orders.entity';
+import { CreateOrdersDto } from './dto/create-orders.dto';
 
 @Injectable()
 export class OrdersService {
   constructor(
-    @InjectRepository(Order)
-    private readonly orderRepository: Repository<Order>,
+    @InjectRepository(Orders)
+    private readonly ordersRepository: Repository<Orders>,
   ) {}
 
-  async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
-    const newOrder = this.orderRepository.create(createOrderDto);
-    return this.orderRepository.save(newOrder);
+  async createOrders(createOrdersDto: CreateOrdersDto): Promise<Orders> {
+    const newOrders = this.ordersRepository.create(createOrdersDto);
+    return this.ordersRepository.save(newOrders);
   }
 
-  async findAllOrders(): Promise<Order[]> {
-    return this.orderRepository.find();
+  async findAllOrders(): Promise<Orders[]> {
+    return this.ordersRepository.find();
   }
 }

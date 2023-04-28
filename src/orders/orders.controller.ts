@@ -10,7 +10,7 @@ export class OrdersController {
 
   @Post()
   create(@Body() createOrderDto: CreateOrdersDto): Promise<any> {
-    return this.ordersService.createOrder(createOrderDto);
+    return this.ordersService.createOrders(createOrderDto);
   }
 
   @Get()
