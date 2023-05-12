@@ -17,4 +17,5 @@ export class Users {
 
   @OneToMany(() => Orders, orders => orders.users)
   orders: Orders[];
+    cartItems: any;
 }

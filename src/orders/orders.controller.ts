@@ -15,7 +15,7 @@ export class OrdersController {
       return this.ordersService.fetchOrders()
   }
 
-  @Post(':id/pay')
+  @Post(':id')
   async markOrdersAsPaid(@Param('id') id: number) {
     return await this.ordersService.markOrdersAsPaid(id);
   }

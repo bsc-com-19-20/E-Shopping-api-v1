@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
-import { ProductCatalog } from 'src/product-catalog/models/Product-catalog.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Users } from 'src/users/users.entity';
 
 @Entity()
@@ -34,7 +33,4 @@ export class Orders {
   @ManyToOne(() =>  Users, users => users.orders)
   users: Users;
 
-  @OneToMany(() => ProductCatalog, productCatalog => productCatalog.orders)
-  productaCatalog: ProductCatalog;
-  productCatalog: any;
 }

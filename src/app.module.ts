@@ -8,6 +8,8 @@ import { UsersModule } from './users/users.module';
 import { OrdersModule } from './orders/orders.module';
 import { Orders } from './orders/orders.entity';
 import { Users } from './users/users.entity';
+import { ProductModule } from './product/product.module';
+import { Product } from './product/product.entity';
 
 @Module({
   imports: [
@@ -18,12 +20,13 @@ import { Users } from './users/users.entity';
       username: 'root',
       password: '',
       database: 'eshopping_v1',
-      entities: [ProductCatalog, Orders, Users,],
+      entities: [ProductCatalog, Orders, Users, Product],
       synchronize: true,
     }),
     ProductCatalogModule,
     AuthModule,
     UsersModule,
-    OrdersModule],
+    OrdersModule,
+    ProductModule],
 })
 export class AppModule {}

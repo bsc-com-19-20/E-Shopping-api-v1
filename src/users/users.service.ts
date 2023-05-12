@@ -2,9 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './users.entity';
+import { EditUsersDto } from './dtos';
 
 @Injectable()
 export class UsersService {
+  updateUsers(id: number, updateUsersDto: EditUsersDto) {
+      throw new Error('Method not implemented.');
+  }
+  deleteUsers(id: number) {
+      throw new Error('Method not implemented.');
+  }
+  fetchUsers() {
+      throw new Error('Method not implemented.');
+  }
   findOneBy(arg0: { username: any; }) {
     throw new Error('Method not implemented.');
   }
@@ -13,12 +23,9 @@ export class UsersService {
     private usersRepository: Repository<Users>,
   ) {}
 
-  async createUsers(name: string, email: string, password: string): Promise<Users> {
-    const users = new Users();
-    users.name = name;
-    users.email = email;
-    users.password = password;
-    return await this.usersRepository.save(users);
+  async createUsers(user: Users): Promise<Users> {
+    const newUser = this.usersRepository.create(user);
+    return await this.usersRepository.save(newUser);
   }
 
   

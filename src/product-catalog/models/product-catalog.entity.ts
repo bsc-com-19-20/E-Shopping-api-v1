@@ -1,8 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Orders } from 'src/orders/orders.entity';
+import { Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class ProductCatalog {
+  cartItems: any;
+  static findOne(productId: number) {
+      throw new Error('Method not implemented.');
+  }
   @PrimaryGeneratedColumn({type: 'bigint'})
   id: number;
 
@@ -10,11 +13,9 @@ export class ProductCatalog {
   ProductName: string;
 
   @Column()
-  Price: number;
+  quantity: number;
 
   @Column()
   description: string;
 
-  @ManyToOne(() => Orders, orders => orders.productCatalog)
-  orders: Orders[];
 }
