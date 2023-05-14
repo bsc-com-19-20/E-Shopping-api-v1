@@ -1,18 +1,37 @@
 import { Injectable } from '@nestjs/common';
-import { EditProductDto } from './dtos';
+import { CreateProductDto, EditProductDto } from './dtos';
+import { Product } from './product.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ProductService {
-    createProduct(product: any) {
-        throw new Error('Method not implemented.');
-    }
-    fetchProduct() {
-        throw new Error('Method not implemented.');
-    }
-    deleteProduct(id: number) {
-        throw new Error('Method not implemented.');
-    }
-    updateProduct(id: number, updateProductDto: EditProductDto) {
-        throw new Error('Method not implemented.');
-    }
+  constructor(
+    @InjectRepository(Product)
+    private productRepository: Repository<Product>,
+  ) {}
+
+  async createProduct(product: CreateProductDto) {
+    const newProduct = await this.productRepository.create({ ...product });
+    this.productRepository.save(newProduct);
+    return 'Product Saved Successfully';
+  }
+
+  showProducts() {
+    return this.productRepository.find();
+  }
+
+  showSingleProduct(id: any) {
+    return this.productRepository.findOneBy({ id });
+  }
+
+  deleteSingleProduct(id: number) {
+    this.productRepository.delete({ id });
+    return 'Product deleted Successfully';
+  }
+
+  updateProduct(id: number, updateProduct: CreateProductDto) {
+    this.productRepository.update({ id }, { ...updateProduct });
+    return 'Product updated Successfully';
+  }
 }

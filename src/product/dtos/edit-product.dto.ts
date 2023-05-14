@@ -1,7 +1,8 @@
 export class EditProductDto{
-    productName: string;
+    productName: String;
     productPrice: number;
     quantity: number;
-    description: string;
+    description: String;
+    categories: String;
     productAvailable: boolean;
 }

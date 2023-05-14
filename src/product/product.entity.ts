@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import { Orders } from 'src/orders/orders.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 
 @Entity()
 export class Product {
@@ -18,6 +19,8 @@ export class Product {
   description: string;
 
   @Column()
-  productAvailable: boolean;
+  categories: string;
 
+  @Column()
+  productAvailable: boolean;
 }
