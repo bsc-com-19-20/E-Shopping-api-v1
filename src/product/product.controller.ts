@@ -10,7 +10,9 @@ import {
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto, EditProductDto } from './dtos';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Products')
 @Controller('product')
 export class ProductController {
   constructor(private productService: ProductService) {}

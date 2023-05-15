@@ -32,4 +32,18 @@ export class OrdersService {
   async findAllOrders(): Promise<Orders[]> {
     return this.ordersRepository.find();
   }
+
+  showSingleOrder(id: any) {
+    return this.ordersRepository.findOneBy({ id });
+  }
+
+  deleteSingleOrder(id: number) {
+    this.ordersRepository.delete({ id });
+    return 'Order deleted Successfully';
+  }
+
+  updateOrder(id: number, updateOrder: CreateOrdersDto) {
+    this.ordersRepository.update({ id }, { ...updateOrder });
+    return 'Order updated Successfully';
+  }
 }

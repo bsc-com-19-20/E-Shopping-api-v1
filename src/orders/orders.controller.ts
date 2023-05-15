@@ -12,10 +12,10 @@ import {
 import { OrdersService } from './orders.service';
 import { CreateOrdersDto } from './dtos/create-orders.dto';
 import { EditOrdersDto } from './dtos';
-//import { AuthGuard } from '@nestjs/passport';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Orders')
 @Controller('orders')
-//@UseGuards(AuthGuard('jwt'))
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
@@ -29,19 +29,18 @@ export class OrdersController {
     return this.ordersService.createOrders(id);
   }
 
-  //   @Delete(':id')
+  @Get('/findOneOrder/:id')
+  findOneOrder(@Param('id') id: number) {
+    return this.ordersService.showSingleOrder(id);
+  }
 
-  // async deleteOrders(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body() product_name: String,
-  // ) {
-  //   return await this.ordersService.deleteOrders(id);
-  // }
-  // @Patch(':id')
-  // async update(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body() updateOrdersDto: EditOrdersDto,
-  // ) {
-  //   return await this.ordersService.updateOrders(id, updateOrdersDto);
-  // }
+  @Delete('/delete/:id')
+  deleteOrder(@Param('id') id: number) {
+    return this.ordersService.deleteSingleOrder(id);
+  }
+
+  @Patch('/update/:id')
+  update(@Param('id') id: number, @Body() updateOrder: CreateOrdersDto) {
+    return this.ordersService.updateOrder(id, updateOrder);
+  }
 }

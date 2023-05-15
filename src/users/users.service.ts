@@ -12,7 +12,7 @@ export class UsersService {
   ) {}
 
   async createUsers(user: CreateUsersDto): Promise<Users> {
-    const newUser = this.usersRepository.create(user);
+    const newUser = this.usersRepository.create({ ...user });
     return await this.usersRepository.save(newUser);
   }
 
@@ -20,11 +20,21 @@ export class UsersService {
     return await this.usersRepository.findOneBy({ name });
   }
 
-  //   async getUsersByEmail(email: string): Promise<Users> {
-  //     return await this.usersRepository.findOneBy({ email });
-  //   }
+  showUsers() {
+    return this.usersRepository.find();
+  }
 
-  //   async getUsersById(id: number): Promise<Users> {
-  //     return await this.usersRepository.findOneBy({ id });
-  //   }
+  showSingleUser(id: any) {
+    return this.usersRepository.findOneBy({ id });
+  }
+
+  deleteSingleUser(id: number) {
+    this.usersRepository.delete({ id });
+    return 'User deleted Successfully';
+  }
+
+  updateUser(id: number, updateUser: CreateUsersDto) {
+    this.usersRepository.update({ id }, { ...updateUser });
+    return 'User updated Successfully';
+  }
 }

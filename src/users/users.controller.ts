@@ -10,32 +10,35 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUsersDto, EditUsersDto } from './dtos';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
-  // @Get()
-  // getUsers() {
-  //   return this.usersService.fetchUsers();
-  // }
 
-  @Post()
+  @Post('/add')
   addUsersItem(@Body() users: CreateUsersDto) {
     return this.usersService.createUsers(users);
   }
 
-  //   @Delete(':id')
-  // async deleteUsers(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body() product_name: String,
-  // ) {
-  //   return await this.usersService.deleteUsers(id);
-  // }
-  // @Patch(':id')
-  // async update(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body() updateUsersDto: EditUsersDto,
-  // ) {
-  //   return await this.usersService.updateUsers(id, updateUsersDto);
-  // }
+  @Get('/list')
+  listUsers() {
+    return this.usersService.showUsers();
+  }
+
+  @Get('/showOneUser/:id')
+  findOneUser(@Param('id') id: number) {
+    return this.usersService.showSingleUser(id);
+  }
+
+  @Delete('/delete/:id')
+  deleteUser(@Param('id') id: number) {
+    return this.usersService.deleteSingleUser(id);
+  }
+
+  @Patch('/update/:id')
+  update(@Param('id') id: number, @Body() updateUser: CreateUsersDto) {
+    return this.usersService.updateUser(id, updateUser);
+  }
 }
