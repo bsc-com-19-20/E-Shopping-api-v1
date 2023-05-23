@@ -7,6 +7,8 @@ import { Orders } from './orders/orders.entity';
 import { Users } from './users/users.entity';
 import { ProductModule } from './product/product.module';
 import { Product } from './product/product.entity';
+import { PaymentsModule } from './payments/payments.module';
+import { Payments } from './payments/payments.entity';
 
 @Module({
   imports: [
@@ -17,12 +19,14 @@ import { Product } from './product/product.entity';
       username: 'root',
       password: '',
       database: 'eshopping_v1',
-      entities: [Orders, Users, Product],
+      entities: [Orders, Users, Product, Payments],
       synchronize: true,
     }),
     AuthModule,
     UsersModule,
     OrdersModule,
-    ProductModule],
+    ProductModule,
+    PaymentsModule,
+  ],
 })
 export class AppModule {}

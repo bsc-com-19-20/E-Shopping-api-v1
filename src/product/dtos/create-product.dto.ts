@@ -6,4 +6,5 @@ export class CreateProductDto {
   description: string;
   categories: string;
   productAvailable: boolean;
+  paymentDetails: string;
 }

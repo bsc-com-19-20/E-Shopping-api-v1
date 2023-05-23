@@ -29,9 +29,6 @@ export class Orders {
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 
-  @Column({ type: 'boolean', default: false })
-  paid: boolean;
-
   @ManyToOne(() => Users, (users) => users.orders)
   users: Users;
 

@@ -23,4 +23,7 @@ export class Product {
 
   @Column()
   productAvailable: boolean;
+
+  @Column()
+  PaymentDetails: string;
 }

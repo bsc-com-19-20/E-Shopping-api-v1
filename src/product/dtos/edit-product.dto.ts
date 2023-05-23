@@ -6,4 +6,5 @@ export class EditProductDto {
   description: String;
   categories: String;
   productAvailable: boolean;
+  paymentDetails: string;
 }

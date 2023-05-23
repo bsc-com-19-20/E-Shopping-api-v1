@@ -25,7 +25,6 @@ export class OrdersService {
 
   async markOrdersAsPaid(id: number): Promise<Orders> {
     const orders = await this.ordersRepository.findOneBy({ id });
-    orders.paid = true;
     return await this.ordersRepository.save(orders);
   }
 

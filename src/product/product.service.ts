@@ -14,7 +14,7 @@ export class ProductService {
   async createProduct(product: CreateProductDto) {
     const newProduct = await this.productRepository.create({ ...product });
     this.productRepository.save(newProduct);
-    return 'Product Saved Successfully';
+    return 'Product added Successfully';
   }
 
   showProducts() {
