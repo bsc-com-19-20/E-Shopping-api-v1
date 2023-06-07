@@ -14,7 +14,7 @@ import { Payments } from './payments/payments.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'http://sql9.freemysqlhosting.net/',
+      host: 'sql9.freemysqlhosting.net',
       port: 3306,
       username: 'sql9624292',
       password: 'ZwWJQiT4WU',
