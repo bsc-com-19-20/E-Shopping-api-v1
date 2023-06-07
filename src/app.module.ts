@@ -14,11 +14,11 @@ import { Payments } from './payments/payments.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'http://sql9.freemysqlhosting.net/',
       port: 3306,
-      username: 'root',
-      password: '',
-      database: 'eshopping_v1',
+      username: 'sql9624292',
+      password: 'ZwWJQiT4WU',
+      database: 'sql9624292',
       entities: [Orders, Users, Product, Payments],
       synchronize: true,
     }),
