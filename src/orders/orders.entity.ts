@@ -23,10 +23,10 @@ export class Orders {
   @Column()
   status: string;
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'date' })
   createdAt: Date;
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'date' })
   updatedAt: Date;
 
   @ManyToOne(() => Users, (users) => users.orders)
