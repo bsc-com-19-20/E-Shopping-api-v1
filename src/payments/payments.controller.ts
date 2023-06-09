@@ -37,8 +37,8 @@ export class PaymentsController {
     operationId: '',
   })
   @Get('/findOnePayment/:id')
-  findOnePayment(@Param('id') params: any) {
-    return this.paymentsService.showSinglePayment(params.id);
+  findOnePayment(@Param('id') id: number) {
+    return this.paymentsService.showSinglePayment(id);
   }
 
   @ApiOperation({

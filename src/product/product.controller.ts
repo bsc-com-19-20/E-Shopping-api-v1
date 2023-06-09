@@ -46,8 +46,8 @@ export class ProductController {
     operationId: '',
   })
   @Get('/findOneProduct/:id')
-  findOneProduct(@Param('id') params: any) {
-    return this.productService.showSingleProduct(params.id);
+  findOneProduct(@Param('id') id: number) {
+    return this.productService.showSingleProduct(id);
   }
 
   @ApiOperation({
